@@ -16,13 +16,13 @@ function TopBar() {
         <div className="flex gap-2.5 items-center m-3 z-20">
           <button
             onClick={handleOpen}
-            className="cursor-pointer ease-out transition duration-300 hover:bg-[#6a6a6a81] w-8 h-8 rounded-full flex justify-center items-center"
+            className="cursor-pointer ease-out ml-[-15px] transition duration-300 hover:bg-[#6a6a6a81] w-10 h-10 rounded-full flex justify-center items-center"
           >
             <FaBars className="fill-gray-300" />
           </button>
 
           <div className="flex gap-2.5 items-start">
-          <img src={logo} alt="" className="h-13 w-11"/>
+          <img src={logo} alt="" className="h-13 w-11 ml-[-12px]"/>
             <div className="gemini">
              
               <h2 className="text-2xl ">Geminii</h2>

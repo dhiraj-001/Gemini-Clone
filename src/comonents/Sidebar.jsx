@@ -5,6 +5,8 @@ import { LuHistory } from "react-icons/lu";
 import { RiSettings4Fill } from "react-icons/ri";
 import logo from "../imgs/logo.png";
 import { BsDot } from "react-icons/bs";
+import searchData from "../data/history";
+import { MdOutlineAlignHorizontalLeft } from "react-icons/md";
 const opts = [
   { icon: <BsGem />, title: "Gem Manager" },
   { icon: <IoMdHelpCircleOutline />, title: "Help" },
@@ -15,14 +17,28 @@ const opts = [
 const Sidebar = ({ open }) => {
   return (
     <div
-     className={`fixed top-0 pb-3 left-0 h-full w-[85vw] bg-[#282a2c] rounded-r-xl transition-transform transform ${
+      className={`fixed top-0 pb-3 left-0 h-full w-[85vw] bg-[#282a2c] rounded-r-xl transition-transform transform ${
         open ? "translate-x-0" : "-translate-x-full"
       } z-10`}
     >
       <div className="flex flex-col justify-between h-full">
-        <h3 className="pt-20 pl-2 font-mini text-gray-300">Recent</h3>
         <div>
+              <h3 className="pt-20 pl-2 font-mini text-gray-300">Recent</h3>
+        <div className="flex flex-col gap-3 mt-6 ml-4">
           {" "}
+          {searchData.map((item) => (
+            <div key={item.id} className="search-item flex transition duration-300 gap-3 items-center hover:bg-[#8a8a8a49] py-3 pl-4 rounded-4xl mr-2 cursor-pointer">
+              <MdOutlineAlignHorizontalLeft className="fill-[#c0bbbbe7]"/>
+              <h2 className="title font-title tracking-wider text-sm text-[#c0bbbbe7] " >{item.title}</h2>
+            </div>
+          ))}
+          <div className="cursor-pointer hover:bg-[#8a8a8a49] transition duration-300 py-3 pl-3 rounded-4xl mr-2 font-title tracking-wider text-sm text-[#c0bbbbe7]">
+            More . . .
+          </div>
+        </div>
+        </div>
+    
+        <div>
           <div className="mt-5 ml-2">
             {opts.map((opt, index) => (
               <div
@@ -35,7 +51,7 @@ const Sidebar = ({ open }) => {
             ))}
           </div>
           <button className="flex gap-4 px-6 py-1.5 rounded-lg items-center ml-5 mt-3 bg-gray-600">
-            <img src={logo} alt="" className="h-11 w-11"/>
+            <img src={logo} alt="" className="h-11 w-11" />
             <span className="font-sans">Try Geminii Advance</span>
           </button>
           <div className="mt-5 flex items-start">

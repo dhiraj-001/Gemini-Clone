@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap');
 @import "tailwindcss" important;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 body{
   background-color: #131314;
 }
@@ -28,8 +29,16 @@ body{
   }
 }
 @theme {
-  --font-head: "Google Sans, Helvetica Neue, sans-serif"; 
+  --font-head: "Roboto", serif;
   --font-mini: "Wix Madefor Text", serif;
+  --font-body: "Outfit", sans-serif;
+  --font-title: "Montserrat", sans-serif;
+
+}
+.text-gradient {
+  background: linear-gradient(148deg, rgb(145, 215, 255) 0%, rgba(199,0,171,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .sidebar {
