@@ -3,7 +3,7 @@ import { BsGem } from "react-icons/bs";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { LuHistory } from "react-icons/lu";
 import { RiSettings4Fill } from "react-icons/ri";
-import { RiGeminiFill } from "react-icons/ri";
+import logo from "../imgs/logo.png";
 import { BsDot } from "react-icons/bs";
 const opts = [
   { icon: <BsGem />, title: "Gem Manager" },
@@ -15,9 +15,9 @@ const opts = [
 const Sidebar = ({ open }) => {
   return (
     <div
-      className={`sidebar pb-5 z-10 h-[100vh] w-[83vw] bg-[#282a2c] rounded-r-xl mt-[-79px] ${
-        open ? "open" : "closed"
-      }`}
+     className={`fixed top-0 pb-3 left-0 h-full w-[85vw] bg-[#282a2c] rounded-r-xl transition-transform transform ${
+        open ? "translate-x-0" : "-translate-x-full"
+      } z-10`}
     >
       <div className="flex flex-col justify-between h-full">
         <h3 className="pt-20 pl-2 font-mini text-gray-300">Recent</h3>
@@ -35,11 +35,11 @@ const Sidebar = ({ open }) => {
             ))}
           </div>
           <button className="flex gap-4 px-6 py-1.5 rounded-lg items-center ml-5 mt-3 bg-gray-600">
-            <RiGeminiFill className="text-xl" />
-            <span className="font-sans">Try Gemini Advance</span>
+            <img src={logo} alt="" className="h-11 w-11"/>
+            <span className="font-sans">Try Geminii Advance</span>
           </button>
           <div className="mt-5 flex items-start">
-            <BsDot className="text-4xl text-gray-500!" />
+            <BsDot className="text-4xl fill-[#888]" />
             <div className="flex flex-col">
               <div className="flex items-center">
                 <span className="font-mini text-[13px] text-gray-300">
