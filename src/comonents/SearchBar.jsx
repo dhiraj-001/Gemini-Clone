@@ -6,7 +6,7 @@ import { Context } from "../context/context";
 function SearchBar() {
  const {input, setInput, onSent} = useContext(Context)
   return (
-    <div className="border-1 border-[#ffffff6d] h-13 w-[85vw] rounded-4xl flex flex-row align-middle items-center">
+    <div className="border-1 z-10 border-[#ffffff6d] h-13 w-[85vw] relative rounded-4xl flex flex-row align-middle items-center">
       <BiImageAdd className="w-10 h-8 ml-3 fill-gray-500" />
       <input 
         type="text" 

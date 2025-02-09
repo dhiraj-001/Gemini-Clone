@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap');
 @import "tailwindcss" important;
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 body{
-  background-color: #131314;
+  background-color: #0c0c19;
+  background-image: url("./imgs/bg.jpg");
+  background-size: cover; /* Ensures the background image covers the entire screen */
+
+  
 }
 *{
   color: white;
@@ -33,6 +38,7 @@ body{
   --font-mini: "Wix Madefor Text", serif;
   --font-body: "Outfit", sans-serif;
   --font-title: "Montserrat", sans-serif;
+  --font-result: "Roboto", serif;
 
 }
 .text-gradient {
@@ -54,3 +60,56 @@ body{
   transform: translateX(-100%);
 }
 
+.shad{
+  box-shadow: -1px -2px 20px #9e9e9e66;
+}
+
+.shad-result{
+  
+    box-shadow: 1px 0px 20px -6px #9ab7ffc4;
+    scrollbar-width: none;
+    backdrop-filter: blur(7px);
+}
+
+.scr-n{
+  scrollbar-width: none !important;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #ce9dff; }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #ce9dff;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.dev-pos{
+  top: 50%;
+    position: absolute;
+    transform: translate(-50px, -50px);
+    left: 43%;
+
+}
+
+.bg-blur{
+  backdrop-filter: blur(10px);
+}
+
+@layer components {
+  .bannerIcon {
+    @apply w-10 h-10 bg-[#a376dfba]  text-black text-xl inline-flex items-center justify-center rounded-md  hover:-translate-y-1 transition-all  cursor-pointer duration-300 ;
+  }}
+
+  .shadow-s1{
+    box-shadow: 1px 1px 5px 0px #8f2fd0;
+    border: 1px solid #9999ff;  }

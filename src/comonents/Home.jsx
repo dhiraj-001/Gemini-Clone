@@ -1,29 +1,41 @@
-import React, { useContext, useState } from 'react';
-import TopBar from './TopBar'; // Assuming TopBar is imported
+import React, { useContext, useState } from "react";
+import TopBar from "./TopBar"; // Assuming TopBar is imported
 
-import SearchBar from './SearchBar';
-import { Context } from '../context/context';
+import SearchBar from "./SearchBar";
+
+import ResultBox from "./ResultBox";
+import Sidebar from "./Sidebar";
+import LoadingSpinner4 from "./Loading";
+import { Context } from "../context/context";
 function Home() {
-  const {result, setResult} = useContext(Context)
-
+  const { loading } = useContext(Context);
   return (
-    <div className="h-[100vh]">
+    <div className="">
       <TopBar />
-      <div className="flex justify-center relative min-h-[calc(100vh-79px)] items-center overflow-hidden">
-        {result ? (
-          <div>{result}</div>
-        ) : (
-          <div>
-            <h1 className="text-5xl font-head font-semibold text-gradient">Hello, Dev</h1>
+
+      <div className="flex justify-center items-center overflow-hidden relative">
+        <ResultBox />
+        {loading && (
+          <div className="absolute left-5 top-3 m-5">
+            <LoadingSpinner4 />
           </div>
         )}
-        <div className='absolute bottom-5'>
-          
-          <SearchBar/>
+
+        <div className="flex-col fixed bottom-0 pb-2 pt-3 w-full flex items-center shad backdrop-blur-sm rounded-t-xl ">
+          <SearchBar />
+          <div className="text-[10px] mt-2 font-body text-[#ffffff79]">
+            Ai can make mistakes
+            <span className="text-[10px] text-[rgba(138,191,255,0.7)]">
+              {" "}
+              @All right reserved
+            </span>
+            <span className="text-[10px] text-[rgba(138,191,255,0.7)]">
+              {" "}
+              &#169;dhiraj
+            </span>
+          </div>
         </div>
-        
       </div>
-      
     </div>
   );
 }

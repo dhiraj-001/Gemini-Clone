@@ -7,6 +7,7 @@ import logo from "../imgs/logo.png";
 import { BsDot } from "react-icons/bs";
 import searchData from "../data/history";
 import { MdOutlineAlignHorizontalLeft } from "react-icons/md";
+import MyDetail from "./MyDetail";
 const opts = [
   { icon: <BsGem />, title: "Gem Manager" },
   { icon: <IoMdHelpCircleOutline />, title: "Help" },
@@ -17,11 +18,11 @@ const opts = [
 const Sidebar = ({ open }) => {
   return (
     <div
-      className={`fixed top-0 pb-3 left-0 h-full w-[85vw] bg-[#282a2c] rounded-r-xl transition-transform transform ${
+      className={`fixed top-0 pb-3 left-0 h-[93vh] w-[85vw] bg-blur bg-[#030408] rounded-r-xl transition-transform transform ${
         open ? "translate-x-0" : "-translate-x-full"
       } z-10`}
     >
-      <div className="flex flex-col justify-between h-full">
+      <div className="flex flex-col justify-between h-full bg-blur">
         <div>
               <h3 className="pt-20 pl-2 font-mini text-gray-300">Recent</h3>
         <div className="flex flex-col gap-3 mt-6 ml-4">
@@ -50,10 +51,11 @@ const Sidebar = ({ open }) => {
               </div>
             ))}
           </div>
-          <button className="flex gap-4 px-6 py-1.5 rounded-lg items-center ml-5 mt-3 bg-gray-600">
+          {/* <button className="flex gap-4 px-6 py-1.5 rounded-lg items-center ml-5 mt-3 bg-gray-600">
             <img src={logo} alt="" className="h-11 w-11" />
             <span className="font-sans">Try Geminii Advance</span>
-          </button>
+          </button> */}
+          <MyDetail/>
           <div className="mt-5 flex items-start">
             <BsDot className="text-4xl fill-[#888]" />
             <div className="flex flex-col">

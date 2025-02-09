@@ -11,7 +11,8 @@ function TopBar() {
     setOpen(!open);
   }
   return (
-    <div className="relative">
+    <div className="relative backdrop-blur-md z-20">
+         <Sidebar open={open} />
       <div className="flex justify-between mx-3 z-20">
         <div className="flex gap-2.5 items-center m-3 z-20">
           <button
@@ -25,7 +26,7 @@ function TopBar() {
           <img src={logo} alt="" className="h-13 w-11 ml-[-12px]"/>
             <div className="gemini">
              
-              <h2 className="text-2xl ">Geminii</h2>
+              <h2 className="text-2xl font-body ">Geminii</h2>
               <h4 className="text-gray-400! font-mini">2.0 Flash</h4>
             </div>
             <div>
@@ -42,7 +43,7 @@ function TopBar() {
           </div>
         </div>
       </div>
-      <Sidebar open={open} />
+      
     </div>
   );
 }
