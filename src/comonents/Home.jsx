@@ -18,7 +18,7 @@ function Home() {
         <ResultBox />
         {loading && (
           <div className="absolute left-5 top-3 m-5">
-            <LoadingSpinner4 />
+            <LoadingSpinner4 text={'Generating Response . . .'}/>
           </div>
         )}
 
