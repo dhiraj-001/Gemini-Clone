@@ -18,7 +18,7 @@ const opts = [
 const Sidebar = ({ open }) => {
   return (
     <div
-      className={`fixed top-0 pb-3 left-0 h-[93vh] w-[85vw] bg-blur bg-[#030408] rounded-r-xl transition-transform transform ${
+      className={`fixed top-0 pb-3 left-0 h-[93vh] lg:h-[100vh] w-[85vw] bg-blur bg-[#030408] rounded-r-xl transition-transform transform ${
         open ? "translate-x-0" : "-translate-x-full"
       } z-10`}
     >

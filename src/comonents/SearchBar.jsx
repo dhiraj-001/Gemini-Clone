@@ -10,8 +10,8 @@ function SearchBar() {
       <BiImageAdd className="w-10 h-8 ml-3 fill-gray-500" />
       <input 
         type="text" 
-        className="ml-2 bg-transparent font-mini focus:outline-none focus:bg-transparent placeholder-gray-400" 
-        placeholder="Ask Geminii . . .                                                           " 
+        className="ml-2 bg-transparent font-mini focus:outline-none focus:bg-transparent placeholder-gray-400 w-[85%]" 
+        placeholder="Ask Geminii . . . " 
         value={input}
         onChange={(e)=>setInput(e.target.value)}
       />{

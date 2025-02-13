@@ -113,3 +113,8 @@ body{
   .shadow-s1{
     box-shadow: 1px 1px 5px 0px #8f2fd0;
     border: 1px solid #9999ff;  }
+
+    .shad-btn{
+      text-shadow: 0px 0px 10px 0px #d1d1ff;
+  
+    }

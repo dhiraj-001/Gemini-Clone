@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MdOutlineHistory } from "react-icons/md";
+import { MdOutlineHistory, MdOutlineLightMode } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import img1 from "../imgs/profle.jpg";
 import { FaBars } from "react-icons/fa6";
@@ -36,7 +36,7 @@ function TopBar() {
         </div>
         <div className="flex items-center gap-8 z-20">
           <div className="history">
-            <MdOutlineHistory className="text-3xl" />
+          <MdOutlineLightMode className="text-2xl fill-[#ac59ff] shad-btn" />
           </div>
           <div className="profile rounded-full overflow-hidden h-10 w-10">
             <img src={img1} alt="" />

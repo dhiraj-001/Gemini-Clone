@@ -7,12 +7,13 @@ import ResultBox from "./ResultBox";
 import Sidebar from "./Sidebar";
 import LoadingSpinner4 from "./Loading";
 import { Context } from "../context/context";
+import Voice from "./Voice";
 function Home() {
   const { loading } = useContext(Context);
   return (
     <div className="">
       <TopBar />
-
+      <Voice/>
       <div className="flex justify-center items-center overflow-hidden relative">
         <ResultBox />
         {loading && (
@@ -36,6 +37,7 @@ function Home() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

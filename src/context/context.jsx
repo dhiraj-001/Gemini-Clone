@@ -12,7 +12,7 @@ const ContextProvider = (props) => {
   const delayPara = (i, nxtWord) => {
     setTimeout(() => {
       setResult((prev) => prev + nxtWord);
-    }, i * 10);
+    }, i * 5);
   };
 
   const onSent = async (prompt) => {
@@ -21,9 +21,10 @@ const ContextProvider = (props) => {
     setPrevQ(input);
     setInput("");
     const res = await run(input);
+    setLoading(false);
     let respArray = res.split("**");
     let newRes = "";
-
+    
     for (let i = 0; i < respArray.length; i++) {
       if (i === 0 || i % 2 === 0) {
         newRes += respArray[i];
@@ -34,7 +35,7 @@ const ContextProvider = (props) => {
 
     let newRes2 = newRes.split("*").join("</br>");
     let newResArray = newRes2.split("");
-    setLoading(false);
+    
     setResult(""); // Clear result before starting to append new content
     for (let i = 0; i < newResArray.length; i++) {
       const nextWord = newResArray[i];
