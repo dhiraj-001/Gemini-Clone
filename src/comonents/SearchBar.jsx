@@ -3,6 +3,7 @@ import { BiImageAdd } from "react-icons/bi";
 import { FaMicrophone } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 import { Context } from "../context/context";
+import { TiDeleteOutline } from "react-icons/ti";
 function SearchBar() {
   const { input, setInput, onSent,hearMic } = useContext(Context);
 
@@ -16,6 +17,11 @@ function SearchBar() {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
+      {input && 
+      <TiDeleteOutline className="absolute right-16 text-2xl fill-[#ffffffbd] cursor-pointer" onClick={()=>{
+        setInput("");
+       
+      }}/>}
       {
         input ? (
           <button onClick={() => onSent()} className="absolute right-3 h-9 rounded-full flex ease-in-out items-center justify-center bg-[#8484844e] w-9 cursor-pointer transition duration-800">
