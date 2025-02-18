@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsGem } from "react-icons/bs";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { LuHistory } from "react-icons/lu";
 import { RiSettings4Fill } from "react-icons/ri";
-import logo from "../imgs/logo.png";
 import { BsDot } from "react-icons/bs";
 import searchData from "../data/history";
 import { MdOutlineAlignHorizontalLeft } from "react-icons/md";
 import MyDetail from "./MyDetail";
+import Sidebarlg from "./Sidebarlg";
+import { Context } from "../context/context";
 const opts = [
   { icon: <BsGem />, title: "Gem Manager" },
   { icon: <IoMdHelpCircleOutline />, title: "Help" },
@@ -15,10 +16,13 @@ const opts = [
   { icon: <RiSettings4Fill />, title: "Settings" },
 ];
 
-const Sidebar = ({ open }) => {
+const Sidebar = () => {
+   const {open, toggleSidebar, prevs} = useContext(Context)
   return (
-    <div
-      className={`fixed top-0 pb-3 left-0 h-[93vh] lg:h-[100vh] w-[85vw] bg-blur bg-[#030408] rounded-r-xl transition-transform transform ${
+    <div>
+     
+       <div
+      className={`fixed top-0 pb-3 h-[93vh] lg:h-[100vh] w-[85vw] xl:w-[40vw] bg-blur bg-[#030408] rounded-r-xl transition-transform transform ${
         open ? "translate-x-0" : "-translate-x-full"
       } z-10`}
     >
@@ -27,10 +31,10 @@ const Sidebar = ({ open }) => {
               <h3 className="pt-20 pl-2 font-mini text-gray-300">Recent</h3>
         <div className="flex flex-col gap-3 mt-6 ml-4">
           {" "}
-          {searchData.map((item) => (
-            <div key={item.id} className="search-item flex transition duration-300 gap-3 items-center hover:bg-[#8a8a8a49] py-3 pl-4 rounded-4xl mr-2 cursor-pointer">
+          {prevs.map((item,i) => (
+            <div key={i} className="search-item flex transition duration-300 gap-3 items-center hover:bg-[#8a8a8a49] py-3 pl-4 rounded-4xl mr-2 cursor-pointer">
               <MdOutlineAlignHorizontalLeft className="fill-[#c0bbbbe7]"/>
-              <h2 className="title font-title tracking-wider text-sm text-[#c0bbbbe7] " >{item.title}</h2>
+              <h2 className="title font-title tracking-wider text-sm text-[#dcdcdce7] " >{item.title}</h2>
             </div>
           ))}
           <div className="cursor-pointer hover:bg-[#8a8a8a49] transition duration-300 py-3 pl-3 rounded-4xl mr-2 font-title tracking-wider text-sm text-[#c0bbbbe7]">
@@ -79,6 +83,8 @@ const Sidebar = ({ open }) => {
         </div>
       </div>
     </div>
+    </div>
+   
   );
 };
 

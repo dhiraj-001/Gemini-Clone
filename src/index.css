@@ -107,7 +107,7 @@ body{
 
 @layer components {
   .bannerIcon {
-    @apply w-10 h-10 bg-[#a376dfba]  text-black text-xl inline-flex items-center justify-center rounded-md  hover:-translate-y-1 transition-all  cursor-pointer duration-300 ;
+    @apply bg-[#a376dfba]  text-black text-xl inline-flex items-center justify-center rounded-md  hover:-translate-y-1 transition-all  cursor-pointer duration-300 ;
   }}
 
   .shadow-s1{
@@ -119,33 +119,29 @@ body{
   
     }
 
-    @keyframes slideUp {
-      from {
+    @keyframes slide-up {
+      0% {
         transform: translateY(100%);
-        opacity: 0;
       }
-      to {
+      100% {
         transform: translateY(0);
-        opacity: 1;
       }
     }
     
-    @keyframes slideDown {
-      from {
+    @keyframes slide-down {
+      0% {
         transform: translateY(0);
-        opacity: 1;
       }
-      to {
+      100% {
         transform: translateY(100%);
-        opacity: 0;
       }
     }
     
     .animate-slide-up {
-      animation: slideUp 0.5s ease-in-out;
+      animation: slide-up 0.5s ease-in-out forwards;
     }
     
     .animate-slide-down {
-      animation: slideDown 0.5s ease-in-out;
+      animation: slide-down 0.5s ease-in-out forwards;
     }
     

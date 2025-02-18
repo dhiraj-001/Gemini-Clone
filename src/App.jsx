@@ -6,8 +6,8 @@ import Home from "./comonents/Home";
 
 function App() {
   return (
-    <div>
-  {/* <TopBar/> */}
+    <div>  
+
       <Home />
     </div>
   );
