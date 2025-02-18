@@ -29,7 +29,7 @@ function ResultBox() {
           >
             Hello, Dev ...
           </h1>
-          <div className="text-[#943be25a] text-[8px]  md:text-sm font-mini absolute w-[80vw] bottom-5 backdrop-blur-2xl border-1 rounded-2xl p-4">
+          <div className="text-[#943be25a] text-[6px]  md:text-sm font-mini absolute w-[80vw] bottom-5 backdrop-blur-2xl border-1 rounded-2xl p-4">
             <h2 className="font-extrabold text-[#ffffff5a]">Disclaimer</h2>
             <p className="text-[#ffffff5a]">
               The <strong className="text-[#ffffff5a]">Geminii </strong>{" "}

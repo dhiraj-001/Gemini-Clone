@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { MdOutlineHistory, MdOutlineLightMode } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import img1 from "../imgs/profle.jpg";
 import { FaBars } from "react-icons/fa6";
