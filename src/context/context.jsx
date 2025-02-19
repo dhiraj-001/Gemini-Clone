@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useRef } from "react";
 import run from "../config/gemini";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -15,7 +15,9 @@ const ContextProvider = (props) => {
   const [open, setOpen] = useState(false);
   const [recent, setRecent] = useState("");
   const [prevs, setPrevs] = useState([]);
-
+  const timeoutsRef = useRef([]);
+  const controllerRef = useRef(null);
+  
   const {
     transcript,
     listening,
@@ -34,7 +36,7 @@ const ContextProvider = (props) => {
     });
   };
   const toggleSidebar = () => {
-    setOpen(!open)
+    setOpen(!open);
   };
 
   const hearMic = () => {
@@ -48,53 +50,79 @@ const ContextProvider = (props) => {
     resetTranscript();
   };
   const delayPara = (i, nxtWord) => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setResult((prev) => prev + nxtWord);
     }, i * 5);
+    timeoutsRef.current.push(timeoutId);
+  };
+
+  const clearPreviousOperations = () => {
+    // Clear all timeouts
+    timeoutsRef.current.forEach((timeoutId) => clearTimeout(timeoutId));
+    timeoutsRef.current = [];
+
+    // Abort the previous fetch request
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+      controllerRef.current = null;
+    }
+
+    // Clear the result
+    setResult("");
   };
 
   const onSent = async (val) => {
+    clearPreviousOperations();
+
     setLoading(true);
-    setResult("");
-    setPrevQ(val)
+    setPrevQ(val);
     setRecent(input);
   
     const currentInput = val ? val : input; // Store the current input value
     
     setInput("");
-const res = await run(currentInput);
-    // Use currentInput instead of input
-    setLoading(false);
-    let respArray = res.split("**");
-    let newRes = "";
-  
-    for (let i = 0; i < respArray.length; i++) {
-      if (i === 0 || i % 2 === 0) {
-        newRes += respArray[i];
-      } else {
-        newRes += "</br></br><b>" + respArray[i] + "</b>";
+    controllerRef.current = new AbortController();
+    const signal = controllerRef.current.signal;
+
+    try {
+      const res = await run(currentInput, { signal });
+      // Use currentInput instead of input
+      setLoading(false);
+      let respArray = res.split("**");
+      let newRes = "";
+    
+      for (let i = 0; i < respArray.length; i++) {
+        if (i === 0 || i % 2 === 0) {
+          newRes += respArray[i];
+        } else {
+          newRes += "</br></br><b>" + respArray[i] + "</b>";
+        }
       }
+    
+      let newRes2 = newRes.split("*").join("</br>");
+      let newResArray = newRes2.split("");
+    
+      for (let i = 0; i < newResArray.length; i++) {
+        const nextWord = newResArray[i];
+        delayPara(i, nextWord);
+      }
+    
+      // Add the prompt with the current input value as the title
+    
+      addPrompt({ title: currentInput, prompt: res });
+    } catch (error) {
+      if (error.name === "AbortError") {
+        console.log("Previous request was aborted");
+      } else {
+        console.error("Error fetching data:", error);
+      }
+    } finally {
+      controllerRef.current = null;
+      setLoading(false);
     }
-  
-    let newRes2 = newRes.split("*").join("</br>");
-    let newResArray = newRes2.split("");
-  
-    setResult(""); // Clear result before starting to append new content
-    for (let i = 0; i < newResArray.length; i++) {
-      const nextWord = newResArray[i];
-      delayPara(i, nextWord);
-    }
-  
-    // Add the prompt with the current input value as the title
-  
-       addPrompt({ title: currentInput, prompt: res });
-   
-   
-  
-    val=undefined;
-  
+
+    val = undefined;
   };
-  
 
   const contextVal = {
     input,
