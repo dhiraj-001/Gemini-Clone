@@ -24,10 +24,17 @@ const ContextProvider = (props) => {
   } = useSpeechRecognition();
 
   const addPrompt = (prompt) => {
-    setPrevs((prevs) => [...prevs, prompt]);
+    setPrevs((prevs) => {
+      // Check if the prompt already exists in the recent list
+      const exists = prevs.some((prevPrompt) => prevPrompt.title === prompt.title);
+      if (!exists) {
+        return [...prevs, prompt];
+      }
+      return prevs;
+    });
   };
   const toggleSidebar = () => {
-    open ? setOpen(false) : setOpen(true);
+    setOpen(!open)
   };
 
   const hearMic = () => {
@@ -46,16 +53,17 @@ const ContextProvider = (props) => {
     }, i * 5);
   };
 
-  const onSent = async () => {
+  const onSent = async (val) => {
     setLoading(true);
     setResult("");
-    setPrevQ(input);
+    setPrevQ(val)
     setRecent(input);
   
-    const currentInput = input; // Store the current input value
-  
+    const currentInput = val ? val : input; // Store the current input value
+    
     setInput("");
-    const res = await run(currentInput); // Use currentInput instead of input
+const res = await run(currentInput);
+    // Use currentInput instead of input
     setLoading(false);
     let respArray = res.split("**");
     let newRes = "";
@@ -78,9 +86,13 @@ const ContextProvider = (props) => {
     }
   
     // Add the prompt with the current input value as the title
-    addPrompt({ title: currentInput, prompt: res });
   
-    console.log(prevs);
+       addPrompt({ title: currentInput, prompt: res });
+   
+   
+  
+    val=undefined;
+  
   };
   
 
@@ -91,6 +103,7 @@ const ContextProvider = (props) => {
     setResult,
     onSent,
     prevQ,
+    setOpen,
     setPrevQ,
     loading,
     setLoading,

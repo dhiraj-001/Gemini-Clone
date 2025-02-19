@@ -17,7 +17,11 @@ const opts = [
 ];
 
 const Sidebar = () => {
-   const {open, toggleSidebar, prevs} = useContext(Context)
+   const {open, toggleSidebar, prevs, onSent} = useContext(Context)
+   const sreach = async(prompt) =>{
+      await onSent(prompt);
+      toggleSidebar()
+   }
   return (
     <div>
      
@@ -32,14 +36,16 @@ const Sidebar = () => {
         <div className="flex flex-col gap-3 mt-6 ml-4">
           {" "}
           {prevs.map((item,i) => (
-            <div key={i} className="search-item flex transition duration-300 gap-3 items-center hover:bg-[#8a8a8a49] py-3 pl-4 rounded-4xl mr-2 cursor-pointer">
+            <div
+            onClick={()=>sreach(item.title)}
+            key={i} className="search-item flex transition duration-300 gap-3 items-center hover:bg-[#8a8a8a49] py-3 pl-4 rounded-4xl mr-2 cursor-pointer">
               <MdOutlineAlignHorizontalLeft className="fill-[#c0bbbbe7]"/>
               <h2 className="title font-title tracking-wider text-sm text-[#dcdcdce7] " >{item.title}</h2>
             </div>
           ))}
-          <div className="cursor-pointer hover:bg-[#8a8a8a49] transition duration-300 py-3 pl-3 rounded-4xl mr-2 font-title tracking-wider text-sm text-[#c0bbbbe7]">
+          {/* <div className="cursor-pointer hover:bg-[#8a8a8a49] transition duration-300 py-3 pl-3 rounded-4xl mr-2 font-title tracking-wider text-sm text-[#c0bbbbe7]">
             More . . .
-          </div>
+          </div> */}
         </div>
         </div>
     
@@ -49,6 +55,8 @@ const Sidebar = () => {
               <div
                 key={index}
                 className="flex items-center gap-2.5 p-2.5 text-gray-300"
+              
+            
               >
                 {opt.icon}
                 <span className="font-mini">{opt.title}</span>

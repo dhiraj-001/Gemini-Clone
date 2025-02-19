@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import { Context } from "../context/context";
 
 function ResultBox() {
-  const { result, prevQ, loading } =
+  const { result, prevQ, loading,input,setOpen } =
     useContext(Context);
 
   return (
-    <div className="mx-8 h-[75vh] w-[85vw] overflow-auto scr-n font-body">
+    <div
+    onClick={() =>setOpen(false)}
+    className="mx-8 h-[75vh] w-[85vw] overflow-auto scr-n font-body">
       {result ? (
         <div className="flex flex-col items-end ">
           <div className=" border-[#ce9dff] border-1 transition duration-300 ease-in-out p-3 rounded-2xl rounded-r-none shad-result rounded-b-2xl mb-5">
@@ -23,8 +25,8 @@ function ResultBox() {
       ) : (
         <div>
           <h1
-            className={`text-5xl font-head font-semibold text-gradient dev-pos ${
-              loading ? "hidden" : ""
+            className={`text-5xl font-head font-semibold text-gradient mt-10 ml-3${
+              loading ? " hidden" : ""
             }`}
           >
             Hello, Dev ...

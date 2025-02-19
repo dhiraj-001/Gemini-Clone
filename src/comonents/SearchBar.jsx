@@ -7,11 +7,18 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 function SearchBar() {
   const [imgerr, setImgerr] = useState(false);
-  const { input, setInput, onSent, hearMic, } = useContext(Context);
+  const { input, setInput,setOpen, onSent, hearMic, toggleSidebar} = useContext(Context);
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      onSent(input);
+    }
+  };
   
   return (
-    <div className="border-1 z-10 border-[#ffffff6d] h-13 w-[85vw] relative rounded-4xl flex flex-row align-middle items-center">
+    <div
+      onClick={()=>setOpen(false)}
+    className="border-1 z-10 border-[#ffffff6d] h-13 w-[85vw] relative rounded-4xl flex flex-row align-middle items-center">
       {imgerr && (
         <span className="absolute backdrop-blur-4xl bg-[#612992a2] px-3 py-2 rounded-3xl text-white font-mini top-[-50px]">
           !! Image functionality is not yet implemented
@@ -39,7 +46,8 @@ function SearchBar() {
       )}
       {input ? (
         <button
-          onClick={() => onSent()}
+          onClick={() => onSent(input)}
+          
           className="absolute right-3 h-9 rounded-full flex ease-in-out items-center justify-center bg-[#8484844e] w-9 cursor-pointer transition duration-800"
         >
           <IoSend className="fill-gray-400 transition text-xl duration-800 ease-in-out" />

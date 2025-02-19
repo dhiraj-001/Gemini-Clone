@@ -6,10 +6,12 @@ import Sidebar from "./Sidebar";
 import logo from "../imgs/logo.png";
 import { Context } from "../context/context";
 function TopBar() {
-   const {open, toggleSidebar,} = useContext(Context)
+   const {open, toggleSidebar,setOpen} = useContext(Context)
  
   return (
-    <div className="relative backdrop-blur-md z-20">
+    <div 
+   
+    className="relative backdrop-blur-md z-20">
          <Sidebar/>
       <div className="flex justify-between mx-3 z-20">
         <div className="flex gap-2.5 items-center m-3 z-20">
@@ -24,7 +26,7 @@ function TopBar() {
           <img src={logo} alt="" className="h-13 w-11 ml-[-12px]"/>
             <div className="gemini">
              
-              <h2 className="text-2xl font-body ">Geminii</h2>
+              <h2 className="text-xl font-mini ">Geminii</h2>
               <h4 className="text-gray-400! font-mini">1A flash</h4>
             </div>
             <div>
@@ -41,7 +43,9 @@ function TopBar() {
           </div> */}
 
      
-          <div className="profile rounded-full overflow-hidden h-10 w-10">
+          <div
+          onClick={()=> setOpen(false)}
+          className="profile rounded-full overflow-hidden h-10 w-10">
             <img src={img1} alt="" />
           </div>
         </div>
