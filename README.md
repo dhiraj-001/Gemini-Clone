@@ -11,8 +11,8 @@ Gemini Clone aims to provide a seamless experience similar to the original Gemin
 
 ### Prerequisites
 
-- Node.js (version X.X.X)
-- npm (version X.X.X)
+- Node.js 
+- npm 
 
 ### Steps
 
