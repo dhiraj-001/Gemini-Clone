@@ -6,19 +6,19 @@ const ChatWidget = ({ chatbotId, style }) => {
   useEffect(() => {
     window.CHATBOT_CONFIG = {
       chatbotId,
-      apiUrl: 'https://rankved-backend.onrender.com'
+      apiUrl: 'http://localhost:3000'
     };
 
     // Load script and style only once globally
     if (!window.__rankvedChatEmbedScriptLoaded) {
       const script = document.createElement('script');
-      script.src = 'https://rank-ved-frontend-rfam.vercel.app/chat-embed.js';
+      script.src = 'http://localhost:5173/chat-embed.js';
       script.async = true;
       document.head.appendChild(script);
 
       const link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = 'https://rank-ved-frontend-rfam.vercel.app/chat-embed.css';
+      link.href = 'http://localhost:5173/chat-embed.css';
       document.head.appendChild(link);
 
       window.__rankvedChatEmbedScriptLoaded = true;
