@@ -1,41 +1,34 @@
-import React, { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 
-const ChatWidget = ({ chatbotId, style }) => {
-  const containerIdRef = useRef('chatbot-widget-container-' + Math.random().toString(36).substr(2, 9));
-
+const ChatWidget = ({ chatbotId, config = {} }) => {
   useEffect(() => {
-    window.CHATBOT_CONFIG = {
+    // Use same URL pattern as embed page
+    const backendUrl = 'https://rankved-backend.onrender.com';
+    const frontendUrl = 'https://rank-ved-frontend-rfam.vercel.app';
+    
+    // Set configuration
+    window.RankVedChatbotConfig = {
       chatbotId,
-      apiUrl: 'http://localhost:3000'
+      apiUrl: config.apiUrl || backendUrl,
+      frontendUrl: config.frontendUrl || frontendUrl,
+      ...config
     };
-
-    // Load script and style only once globally
-    if (!window.__rankvedChatEmbedScriptLoaded) {
-      const script = document.createElement('script');
-      script.src = 'http://localhost:5173/chat-embed.js';
-      script.async = true;
-      document.head.appendChild(script);
-
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'http://localhost:5173/chat-embed.css';
-      document.head.appendChild(link);
-
-      window.__rankvedChatEmbedScriptLoaded = true;
-    }
-
-    // Do not remove script or style on unmount to avoid duplicates
-
+    
+    // Load chatbot script
+    const script = document.createElement('script');
+    script.src = `${window.RankVedChatbotConfig.frontendUrl}/chatbot-loader.js`;
+    document.head.appendChild(script);
+    
     return () => {
-      // Only clean up CHATBOT_CONFIG on unmount
-      delete window.CHATBOT_CONFIG;
+      // Cleanup
+      const existingScript = document.querySelector('script[src*="chatbot-loader.js"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
     };
-  }, [chatbotId]);
+  }, [chatbotId, config]);
 
-  return <div id={containerIdRef.current} style={style} />;
+  return null;
 };
 
 export default ChatWidget;
-
-// Usage:
-// <ChatWidget chatbotId='6b6a6d14-a251-44de-8c14-a1235c508913' style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 1000 }} />
